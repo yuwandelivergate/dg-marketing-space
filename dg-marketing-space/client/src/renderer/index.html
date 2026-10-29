@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'none'; frame-src https:; child-src https:">
+  <title>DG Marketing Space</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Shared window chrome for the loading and sign-in screens (the main window is frameless) -->
+  <div class="chrome" id="chrome">
+    <div class="shell-controls">
+      <button data-shell="min" title="Minimize" aria-label="Minimize"></button>
+      <button data-shell="max" title="Maximize" aria-label="Maximize"></button>
+      <button data-shell="close" class="close" title="Close" aria-label="Close"></button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <section id="screen-loading" class="screen active" aria-live="polite">
+    <div class="bg-blur dark"></div>
+    <div class="loading-center">
+      <div class="logo-halo"><img src="../../assets/logo.png" alt="Delivergate"></div>
+      <h1 class="wordmark">DG Marketing Space</h1>
+      <div class="progress" role="progressbar" aria-label="Loading"><span></span></div>
+      <p class="loading-msg" id="loading-msg">Preparing your workspace…</p>
+    </div>
+  </section>
+
+  <!-- Sign in -->
+  <section id="screen-login" class="screen">
+    <div class="bg-blur dark"></div>
+    <form id="login-form" class="login-card" autocomplete="off" novalidate>
+      <img class="login-logo" src="../../assets/logo.png" alt="Delivergate">
+      <h1 class="wordmark">DG Marketing Space</h1>
+      <p class="login-sub">Sign in with your Delivergate workspace account.</p>
+      <label class="field">
+        <span>Username</span>
+        <input id="login-user" name="username" autocomplete="username" spellcheck="false" required>
+      </label>
+      <label class="field">
+        <span>Password</span>
+        <span class="pw">
+          <input id="login-pass" name="password" type="password" autocomplete="current-password" required>
+          <button type="button" id="pw-toggle" class="pw-toggle">Show</button>
+        </span>
+      </label>
+      <p class="login-error" id="login-error" role="alert" hidden></p>
+      <button class="btn primary wide" type="submit" id="login-submit">Sign in</button>
+      <p class="login-notice">
+        This workspace records which apps you use and for how long, pages opened inside the workspace,
+        mouse click and movement counts, idle time and connected displays, for team productivity reports.
+        Keystrokes, screen contents and passwords are never recorded.
+      </p>
+      <p class="offline-badge" id="offline-badge" hidden>Offline test mode — only the test1 account works</p>
+    </form>
+  </section>
+
+  <!-- Desktop -->
+  <section id="screen-desktop" class="screen">
+    <div id="wallpaper"></div>
+
+    <header id="topbar">
+      <div class="tb-left">
+        <span class="tb-brand">DG Marketing Space</span>
+        <span class="tb-active" id="tb-active">Desktop</span>
+      </div>
+      <div class="tb-center" id="tb-clock"></div>
+      <div class="tb-right">
+        <span class="chip" id="chip-monitor" data-status="active" title="Activity logging">
+          <i class="dot"></i><span>Active</span>
+        </span>
+        <span class="chip" id="chip-displays" title="Connected displays">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="2.5" width="13" height="8.5" rx="1.2"/><path d="M5.5 14h5M8 11v3"/></svg>
+          <span>1</span>
+        </span>
+        <span class="chip" id="chip-user"></span>
+        <div class="shell-controls">
+          <button data-shell="min" title="Minimize" aria-label="Minimize"></button>
+          <button data-shell="max" title="Maximize" aria-label="Maximize"></button>
+          <button data-shell="close" class="close" title="Close" aria-label="Close"></button>
+        </div>
+      </div>
+    </header>
+
+    <main id="desktop-area">
+      <div id="desktop-icons" aria-label="Desktop"></div>
+      <div id="windows"></div>
+    </main>
+
+    <nav id="taskbar" aria-label="Taskbar">
+      <button id="start-btn" title="Start" aria-label="Start menu" aria-haspopup="true">
+        <img src="../../assets/logo.png" alt="">
+      </button>
+      <div class="task-divider"></div>
+      <div id="task-apps"></div>
+    </nav>
+
+    <div id="start-menu" role="menu" hidden>
+      <div class="sm-head">
+        <img src="../../assets/logo.png" alt="">
+        <div class="sm-who"><strong id="sm-user"></strong><span id="sm-role"></span></div>
+      </div>
+      <input id="sm-search" class="field-input" type="search" placeholder="Search apps" aria-label="Search apps">
+      <div class="sm-section">
+        <h3>Workspace</h3>
+        <div class="sm-grid" id="sm-web"></div>
+      </div>
+      <div class="sm-section">
+        <h3>Desktop apps <button class="link" id="sm-library" type="button">Browse installed apps</button></h3>
+        <div class="sm-grid" id="sm-local"></div>
+      </div>
+      <div class="sm-foot">
+        <button class="btn ghost" id="sm-settings" type="button">Settings</button>
+        <button class="btn ghost" id="sm-signout" type="button">Sign out</button>
+      </div>
+    </div>
+
+    <div id="ctx-menu" role="menu" hidden></div>
+    <div id="toasts" aria-live="polite"></div>
+  </section>
+
+  <script src="apps.js"></script>
+  <script src="windowManager.js"></script>
+  <script src="launcher.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

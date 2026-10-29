@@ -1,0 +1,11 @@
+{
+  "apiBase": "https://YOUR-DG-ADMIN.vercel.app",
+  "defaultAppUrl": "https://dms.delivergate.com/login",
+  "offlineMode": false,
+  "telemetry": {
+    "sampleIntervalMs": 2000,
+    "flushIntervalMs": 30000,
+    "idleThresholdSec": 120,
+    "captureWindowTitles": false
+  }
+}
